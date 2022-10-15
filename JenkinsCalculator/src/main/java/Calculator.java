@@ -1,3 +1,4 @@
+import java.util.Random;
 
 class Calculator {
 
@@ -39,7 +40,24 @@ class Calculator {
     etc
      */
     int fibonacciNumberFinder(int n){
-        return 0;
+
+        int f[] = new int[n + 1];
+        int i;
+
+        /* 0th and 1st number of the series are 0 and 1*/
+        f[0] = 0;
+
+        if (n > 0) {
+            f[1] = 1;
+
+            for (i = 2; i <= n; i++) {
+                /* Add the previous 2 numbers in the series
+             and store it */
+                f[i] = f[i - 1] + f[i - 2];
+            }
+        }
+
+        return f[n];
     }
 
 
@@ -51,7 +69,32 @@ class Calculator {
     if int a = 16 then this method returns: 10000
      */
     String intToBinaryNumber(int n){
-        return null;
+
+        if (n == 0){
+            return "0";
+        }
+
+        // Creating and assigning binary array size
+        int[] binary = new int[35];
+        int id = 0;
+
+        // Number should be positive
+        while (n > 0) {
+            binary[id++] = n % 2;
+            n = n / 2;
+        }
+
+        StringBuilder finalWord =new StringBuilder();
+
+        // Print Binary
+        // Iteration over array
+        for (int i = id - 1; i >= 0; i--) {
+            finalWord.append(binary[i]);
+        }
+
+        String finalFinalWord = finalWord.toString();
+
+        return finalFinalWord;
     }
 
     /*
@@ -64,7 +107,19 @@ class Calculator {
      */
     String createUniqueID(String n){
 
-        return null;
+        int leftLimit = 97; // letter 'a'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 10;
+        Random random = new Random();
+
+        String generatedString = random.ints(leftLimit, rightLimit + 1)
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+
+        String finalString = n + generatedString;
+
+        return finalString;
     }
 
 
